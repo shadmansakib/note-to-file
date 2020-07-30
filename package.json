@@ -1,0 +1,54 @@
+{
+  "name": "note_to_file",
+  "description": "A quick and dirty tool to add notes to any file",
+  "author": "Shadman Sakib",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
+    "electron-is-dev": "^1.2.0",
+    "knex": "^0.21.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hotkeys": "^2.0.0",
+    "react-scripts": "3.4.1",
+    "sqlite3": "^5.0.0",
+    "wait-on": "^5.1.0"
+  },
+  "scripts": {
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test --env=jsdom",
+    "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder",
+    "release": "npm run react-build && electron-builder --publish=always",
+    "build": "npm run react-build && npm run electron-build",
+    "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "main": "public/electron.js",
+  "homepage": "./",
+  "devDependencies": {
+    "electron": "^9.1.0",
+    "electron-builder": "^22.7.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

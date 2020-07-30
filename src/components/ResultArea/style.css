@@ -1,0 +1,7 @@
+.Result-area {
+    /* display: 'flex', flexDirection: 'column', backgroundColor: "pink", height: '85vh' */
+    display: flex;
+    flex-direction: row;
+    background-color: #fafafa;
+    height: 85vh;
+}

@@ -1,0 +1,15 @@
+.File-drop {
+    display: flex;
+    flex-direction: column;
+    background-color: #b4b4b4;
+    /* height: 85vh; */
+    height: 95vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.File-drop p {
+    font-weight: 300;
+    font-size: 2rem;
+    font-family: monospace;
+}

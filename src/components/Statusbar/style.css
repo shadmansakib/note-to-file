@@ -1,0 +1,15 @@
+.Statusbar {
+    display: flex;
+    flex-direction: column;
+    background-color: #1b1e24;
+    color: white;
+    height: 5vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.Statusbar p {
+    /* fontSize: '0.7rem' */
+    font-size: 0.7rem;
+    line-height: 5vh;
+}

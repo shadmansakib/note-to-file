@@ -1,0 +1,9 @@
+.Result-list {
+    display: flex;
+    flex: 7;
+    flex-direction: column;
+    background-color:white;
+    overflow-y: scroll;
+}
+
+/* TODO: hide scrolbar */

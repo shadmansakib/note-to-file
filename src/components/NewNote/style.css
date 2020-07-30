@@ -1,0 +1,43 @@
+.New-note {
+    display: flex;
+    flex-direction: column;
+    background-color: #fafafa;
+    height: 90vh;
+    padding: 10px;
+}
+
+h1 {
+    all: unset;
+    font-size: 1.2em;
+    font-weight: 500;
+    text-align: left;
+}
+
+.New-note-form {
+    display: block;
+    margin-top: 20px;
+}
+
+.Form-input {
+    margin: 5px;
+    width: 90%;
+    padding: 8px;
+}
+
+/* .Filepath {} */
+
+.Note {
+    height: 50vh;
+    resize: none;
+}
+
+.Button-area {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 35px;
+}
+
+.Form-btn {
+    margin-left: 10px;
+    padding: 5px 20px 5px 20px;
+}
