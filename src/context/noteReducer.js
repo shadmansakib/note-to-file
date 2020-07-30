@@ -7,7 +7,6 @@ export default function noteReducer(state, action) {
             return {
                 ...state,
                 notes: [...state.notes, action.payload],
-                // unsavedNote: action.payload,
             };
 
         case DELETE_NOTE:

@@ -7,7 +7,6 @@ export default function ResultArea() {
     return (
         <div className="Result-area">
             <ResultList />
-            {/* <ResultPreview /> */}
         </div>
     );
 }

@@ -10,19 +10,14 @@ export const SEARCH_NOTE = 'SEARCH_NOTE';
 
 export const UPDATE_NOTE_LIST = 'UPDATE_NOTE_LIST';
 
-// load notes from database (when app started and when new  added/removed)
-// export const LOAD_NOTES = 'LOAD_NOTES';
 
 const initialState = {
     notes: [],
     searchQuery: '',
-    // isDatabaseChanged: false,
-    // unsavedNote: null,
 };
 
 // global context
 export const GlobalContext = createContext(initialState);
-
 
 // provider component
 export const GlobalProvider = ({ children }) => {

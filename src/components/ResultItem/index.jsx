@@ -27,7 +27,7 @@ export default function ResultItem({ id, note, fpath }) {
             </div>
 
             <div className="File-path">
-                {/* replacing space because sometimes text after space doesn't show properly */}
+                {/* remove space from filepath. reason: sometimes space breaks the design :-/ */}
                 <p>{fpath.replace(/\s/g, '')}</p>
             </div>
 

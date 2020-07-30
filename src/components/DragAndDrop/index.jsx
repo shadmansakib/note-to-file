@@ -50,10 +50,8 @@ export default function DragAndDrop(props) {
             dragCounter = 0;
         }
     };
-    // end - event listeners
 
     useEffect(() => {
-        // Similar to componentDidMount
         let div = dropRef.current;
 
         div.addEventListener('dragenter', handleDragIn);
@@ -61,8 +59,6 @@ export default function DragAndDrop(props) {
         div.addEventListener('dragover', handleDrag);
         div.addEventListener('drop', handleDrop);
 
-        // Return function will be called on component unmount
-        // similar to componentWillUmnount
         return () => {
             div.removeEventListener('dragleave', handleDragOut);
             div.removeEventListener('dragenter', handleDragIn);
