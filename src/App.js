@@ -14,7 +14,7 @@ import EmptyNoteList from "./components/EmptyNoteList";
 // context
 import { GlobalContext } from './context/globalState';
 
-import { MULTIPLE_FILE_SELECTED_ERROR, SAVE_NOTE, UPDATE_NOTE_LIST } from "../common/consts";
+import { MULTIPLE_FILE_SELECTED_ERROR, SAVE_NOTE, UPDATE_NOTE_LIST } from "./consts";
 
 
 // electron
