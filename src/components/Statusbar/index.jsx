@@ -8,7 +8,7 @@ export default function ResultArea() {
     const {notes} = useContext(GlobalContext);
     return (
         <div className="Statusbar">
-            <p><code>Total {notes.length} tags</code></p>
+            <p><code>Total {notes.length} {notes.length > 1 ? "notes" : "note"}</code></p>
         </div>
     );
 }

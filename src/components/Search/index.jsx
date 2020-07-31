@@ -5,7 +5,7 @@ import { GlobalContext } from "../../context/globalState";
 
 export default function Search() {
 
-    const { searchNotes } = useContext(GlobalContext);
+    const { searchQuery, searchNotes } = useContext(GlobalContext);
 
     useEffect(() => {
         searchNotes('');
@@ -21,7 +21,11 @@ export default function Search() {
                 placeholder="Search notes"
                 autoFocus
                 onChange={(e) => searchNotes(e.target.value)}
+                value={searchQuery}
             />
+            {searchQuery && <div className="Clear-search-input" onClick={() => searchNotes('')}>
+                <p>x</p>
+            </div>}
         </header>
     );
 }

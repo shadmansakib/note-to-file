@@ -39,18 +39,14 @@ function createWindow() {
             : `file://${path.join(__dirname, "../build/index.html")}`
     );
 
-    mainWindow.once('ready-to-show', async () => {
+    mainWindow.once('ready-to-show', () => {
         // init database in user data path of OS
         initDB(app.getPath('userData'));
 
-        // get note list from db
-        const allNotes = await fetchAllNotes();
-        mainWindow.webContents.send(UPDATE_NOTE_LIST, allNotes);
-        
         // show main window
         mainWindow.show();
 
-        
+
     });
 
     mainWindow.on("closed", () => (mainWindow = null));
@@ -84,8 +80,12 @@ ipcMain.on(SAVE_NOTE, async (event, note) => {
 });
 
 ipcMain.on(UPDATE_NOTE_LIST, async (event) => {
-    const allNotes = await fetchAllNotes();
-    event.sender.send(UPDATE_NOTE_LIST, allNotes);
+    try {
+        const allNotes = await fetchAllNotes();
+        event.sender.send(UPDATE_NOTE_LIST, allNotes);
+    } catch (err) {
+        console.log(`[UPDATE_NOTE_LIST] error : ${err}`);
+    }
 });
 
 

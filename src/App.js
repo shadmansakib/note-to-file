@@ -9,6 +9,7 @@ import DragAndDrop from "./components/DragAndDrop";
 import FileDrop from "./components/FileDrop";
 
 import NewNote from "./components/NewNote";
+import EmptyNoteList from "./components/EmptyNoteList";
 
 // context
 import { GlobalContext } from './context/globalState';
@@ -24,7 +25,7 @@ function App() {
   const [hasNewFilePath, setHasNewFilePath] = useState(false);
   const [filePath, setFilepath] = useState('');
 
-  const { updateNoteList } = useContext(GlobalContext);
+  const { notes, updateNoteList } = useContext(GlobalContext);
 
   useEffect(() => {
     ipcRenderer.send(UPDATE_NOTE_LIST);
@@ -41,8 +42,7 @@ function App() {
     updateNoteList(notes);
   });
 
-
-
+  
   function handleDrop(files) {
     let fileLength = files.length;
     if (fileLength > 1) {
@@ -59,22 +59,20 @@ function App() {
   }
 
   return (
-    // <GlobalProvider>
     <div className="App">
-      {/* new note */}
+      <DragAndDrop handleDrop={handleDrop} dropScreen={<FileDrop />}>
+        {notes.length === 0 && !hasNewFilePath && <EmptyNoteList />}
+
+        {notes.length > 0 && !hasNewFilePath && <>
+          <Search />
+          <ResultArea />
+        </>}
+      </DragAndDrop>
+
       {hasNewFilePath && <NewNote file_path={filePath} toggleScreen={toggleScreen} onSaveNote={saveNote} />}
-
-      {/* <NewNote/> */}
-
-      {/* search */}
-      {!hasNewFilePath && <DragAndDrop handleDrop={handleDrop} dropScreen={<FileDrop />}>
-        <Search />
-        <ResultArea />
-      </DragAndDrop>}
 
       <Statusbar />
     </div>
-    // </GlobalProvider>
   );
 }
 

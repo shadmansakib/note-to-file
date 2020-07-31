@@ -1,0 +1,18 @@
+.Empty-note-list {
+    display: flex;
+    flex-direction: column;
+    /* background-color: #b4b4b4; */
+    height: 95vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.Empty-note-list h1 {
+    font-size: 2rem;
+}
+
+.Empty-note-list p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    font-family: monospace;
+}

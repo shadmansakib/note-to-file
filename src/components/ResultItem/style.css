@@ -3,7 +3,6 @@
     align-items: center;
     height: 30px;
     border-bottom: 1px solid white;
-    box-sizing: border-box;
 }
 
 .Result-item:nth-child(even){

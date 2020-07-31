@@ -20,3 +20,28 @@
 .Search-input:focus{
     outline: none;
 }
+
+.Clear-search-input {
+    position: absolute;
+    top: 11px;
+    right: 20px;
+    box-sizing: border-box;
+    height: 18px;
+    width: 18px;
+    border-radius: 9px;
+}
+
+.Clear-search-input:hover {
+    background: lightgray;
+}
+
+.Clear-search-input p {
+    all: unset;
+    position: absolute;
+    left: 5px;
+    top: -1px;
+    color: black;
+    padding-top: 0px;
+    line-height: 1rem;
+    font-size: 1rem;
+}
