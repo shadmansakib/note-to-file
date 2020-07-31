@@ -15,11 +15,11 @@ const {
     UPDATE_NOTE_LIST,
     DELETE_NOTE,
     OPEN_FILE_PATH,
-} = require("../src/consts");
+} = require("./consts");
 
 
 // database
-const { initDB, saveNote, fetchAllNotes, deleteNote } = require("../src/db");
+const { initDB, saveNote, fetchAllNotes, deleteNote } = require("./db");
 
 let mainWindow;
 function createWindow() {
