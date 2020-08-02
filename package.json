@@ -1,6 +1,6 @@
 {
   "name": "note_to_file",
-  "description": "A quick and dirty tool to add notes to any file",
+  "description": "A simple electron app to add note to any file",
   "author": "Shadman Sakib",
   "version": "0.1.0",
   "private": true,

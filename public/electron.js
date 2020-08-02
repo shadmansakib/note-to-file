@@ -9,17 +9,8 @@ const isDev = require("electron-is-dev");
 
 const path = require("path");
 
-const {
-    MULTIPLE_FILE_SELECTED_ERROR,
-    SAVE_NOTE,
-    UPDATE_NOTE_LIST,
-    DELETE_NOTE,
-    OPEN_FILE_PATH,
-} = require("../src/consts");
-
-
 // database
-const { initDB, saveNote, fetchAllNotes, deleteNote } = require("../src/db");
+const { initDB, saveNote, fetchAllNotes, deleteNote } = require("./db");
 
 let mainWindow;
 function createWindow() {
@@ -39,9 +30,12 @@ function createWindow() {
             : `file://${path.join(__dirname, "../build/index.html")}`
     );
 
-    mainWindow.once('ready-to-show', () => {
+    mainWindow.once('ready-to-show', async () => {
         // init database in user data path of OS
         initDB(app.getPath('userData'));
+
+        const allNotes = await fetchAllNotes();
+        mainWindow.webContents.send('update-note-list', allNotes);
 
         // show main window
         mainWindow.show();
@@ -65,35 +59,35 @@ app.on("activate", () => {
 
 
 // ipc
-ipcMain.on(MULTIPLE_FILE_SELECTED_ERROR, (e) => {
+ipcMain.on('multiple-file-selected-error', (e) => {
     dialog.showErrorBox("Multiple file selected", "You can add only ONE file at a time!")
 })
 
-ipcMain.on(SAVE_NOTE, async (event, note) => {
+ipcMain.on('save-note', async (event, note) => {
 
     await saveNote(note);
     // get all note list from db and update UI
     // TODO: optimize query
     const allNotes = await fetchAllNotes();
-    event.sender.send(UPDATE_NOTE_LIST, allNotes);
+    event.sender.send('update-note-list', allNotes);
 
 });
 
-ipcMain.on(UPDATE_NOTE_LIST, async (event) => {
+ipcMain.on('update-note-list', async (event) => {
     try {
         const allNotes = await fetchAllNotes();
-        event.sender.send(UPDATE_NOTE_LIST, allNotes);
+        event.sender.send('update-note-list', allNotes);
     } catch (err) {
-        console.log(`[UPDATE_NOTE_LIST] error : ${err}`);
+        console.log(`['update-note-list'] error : ${err}`);
     }
 });
 
 
-ipcMain.on(DELETE_NOTE, async (event, noteId) => {
+ipcMain.on('delete-note', async (event, noteId) => {
     await deleteNote(noteId);
 });
 
-ipcMain.on(OPEN_FILE_PATH, (event, filepath) => {
+ipcMain.on('open-file-path', (event, filepath) => {
     // TODO: handle path properly
     shell.showItemInFolder(filepath);
 });

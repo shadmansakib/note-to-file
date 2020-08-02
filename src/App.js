@@ -14,30 +14,26 @@ import EmptyNoteList from "./components/EmptyNoteList";
 // context
 import { GlobalContext } from './context/globalState';
 
-import { MULTIPLE_FILE_SELECTED_ERROR, SAVE_NOTE, UPDATE_NOTE_LIST } from "./consts";
-
-
 // electron
 const { ipcRenderer } = window.require('electron');
 
 function App() {
-
   const [hasNewFilePath, setHasNewFilePath] = useState(false);
   const [filePath, setFilepath] = useState('');
 
   const { notes, updateNoteList } = useContext(GlobalContext);
 
   useEffect(() => {
-    ipcRenderer.send(UPDATE_NOTE_LIST);
+    ipcRenderer.send('update-note-list');
   }, []);
 
 
   const saveNote = (note) => {
-    ipcRenderer.send(SAVE_NOTE, note);
+    ipcRenderer.send('save-note', note);
   };
 
 
-  ipcRenderer.on(UPDATE_NOTE_LIST, (event, notes) => {
+  ipcRenderer.on('update-note-list', (event, notes) => {
     console.log('updating note list');
     updateNoteList(notes);
   });
@@ -46,7 +42,7 @@ function App() {
   function handleDrop(files) {
     let fileLength = files.length;
     if (fileLength > 1) {
-      ipcRenderer.send(MULTIPLE_FILE_SELECTED_ERROR);
+      ipcRenderer.send('multiple-file-selected-error');
       return;
     }
     if (!files[0].name) return;

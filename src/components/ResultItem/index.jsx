@@ -15,7 +15,7 @@ export default function ResultItem({ id, note, fpath }) {
     };
 
     const showFileInExplorer = filepath => {
-        console.log(`>>> filepath: ${filepath}`);
+        // console.log(`>>> filepath: ${filepath}`);
         ipcRenderer.send('open-file-path', filepath);
     };
 
