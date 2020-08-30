@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 export default function DragAndDrop(props) {
     let dragCounter = 0;
 
-    const dropRef = React.createRef();
+    const dropRef = useRef();
 
     const [drag, setDrag] = useState(false);
 
